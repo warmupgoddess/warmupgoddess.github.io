@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>reading list</title>
+<style>
+  body {
+    font-family: "SF Pro Display", sans-serif;
+    background-color: #fdf3f3;
+    margin: 0;
+    padding: 0;
+    font-weight:200;
+  }
+
+  .name-row {
+  position: absolute;
+  top: 40px;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Baskerville', serif;
+  font-style: italic;
+  font-size: 50px;
+}
+
+  /* <3 */
+.heart-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.heart {
+  width: 50px;
+  height: auto;
+  opacity: 0.9;
+}
+.reading{
+  max-width: 760px;        
+  margin: 0 auto 80px;     /* center + space below */
+  padding: 0 20px;
+  text-align: center;
+  font-weight: 200;        
+}
+
+.reading-title{
+  font-size: 28px;
+  font-weight: 300;
+  margin: 20px 0 14px;
+  letter-spacing: .2px;
+}
+
+.reading-section{
+  font-family: Baskerville, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  margin: 18px 0 6px;
+}
+
+.reading-list{
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+
+.reading-list li{
+  font-size: 22px;
+  line-height: 1.9;       
+  color: #333;
+}
+
+ /* footer */
+ .footer-link{margin-top:auto; text-align:center; margin-bottom:30px;
+      font-family:Baskerville,serif; font-style:italic; font-size:42px;}
+    .footer-link a{color:var(--ink); text-decoration:none;}
+    .footer-link a:hover{color:#ff69b4;}
+
+@media (max-width: 600px){
+  .reading-title{ font-size: 24px; }
+  .reading-list li{ font-size: 20px; line-height: 1.8; }
+}
+
+
+</style>
+</head>
+<body>
+    <div class="name-row">
+        <div>mrinalini</div>
+        <div>keskar</div>
+      </div>
+    
+      <div class="heart-wrapper">
+        <a href = "homepage.html">
+        <img src="heart.png" alt="heart" class="heart">
+      </a>
+      </div>
+      <div class="reading">
+        <h1 class="reading-title">reading list – summer 2025</h1>
+      
+        <h3 class="reading-section">current</h3>
+        <ul class="reading-list">
+          <li>garcía márquez – one hundred years of solitude</li>
+        </ul>
+      
+        <h3 class="reading-section">read</h3>
+        <ul class="reading-list">
+          <li>patti smith - just kids</li>
+          <li>elif batuman – the idiot</li>
+          <li>jhumpa lahiri – roman stories</li>
+          <li>brett easton ellis – the rules of attraction</li>
+          <li>gaël faye – petit pays</li>
+        </ul>
+      
+        <h3 class="reading-section">tbr</h3>
+        <ul class="reading-list">
+          <li>emily brontë – wuthering heights</li>
+          <li>virginia woolf – the years</li>
+        </ul>
+      </div>
+    <!-- footer -->
+  <div class="footer-link">
+    <a href="homepage.html"><em>home</em></a>
+  </div>
+
+
+</body>
