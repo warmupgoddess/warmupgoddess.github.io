@@ -1,0 +1,73 @@
+:root{
+  --space: 20px;
+  --max-width: 680px;  /* keeps lines readable */
+}
+
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; }
+body {
+  background:#fff6f6;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-weight:200;
+  color:#111;
+}
+
+.wrapper {
+  min-height:100svh;               /* safe viewport on mobile */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding: var(--space);
+}
+
+.content {
+  width:100%;
+  max-width: var(--max-width);
+  margin-inline:auto;
+  text-align:center;
+}
+
+/* Title */
+.name-row {
+  display:flex;
+  gap: 12px;
+  justify-content:center;
+  align-items:baseline;
+  font-family: "Baskerville", serif;
+  font-style: italic;
+  font-size: clamp(28px, 8vw, 60px);
+  line-height:1;
+  margin-bottom: 28px;
+}
+
+/* Nav */
+.links {
+  display:flex;
+  justify-content:center;
+  gap: clamp(16px, 6vw, 40px);
+  flex-wrap: wrap;                 /* wrap nicely on small screens */
+  font-size: clamp(18px, 5vw, 28px);
+  margin-bottom: 20px;
+}
+.links a { text-decoration:none; color:#111; }
+.links a:active, .links a:hover { color:pink; }
+
+.heart {
+  margin-top:16px;
+  width: clamp(28px, 8vw, 52px);
+  height:auto;
+}
+
+/* Images & media should scale */
+img, video { max-width:100%; height:auto; }
+
+/* --- Breakpoints: enhance for larger screens --- */
+@media (min-width: 768px) {
+  .wrapper { padding: 40px; }
+  .name-row { margin-bottom: 36px; }
+  .links { margin-bottom: 28px; }
+}
+@media (min-width: 1024px) {
+  :root { --max-width: 900px; }
+}
