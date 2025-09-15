@@ -1,6 +1,6 @@
 :root{
   --space: 20px;
-  --max-width: 680px;  /* keeps lines readable */
+  --max-width: 720px;  /* keeps lines readable */
 }
 
 * { box-sizing: border-box; }
@@ -30,44 +30,40 @@ body {
 
 /* Title */
 .name-row {
-  display:flex;
-  gap: 12px;
-  justify-content:center;
-  align-items:baseline;
-  font-family: "Baskerville", serif;
-  font-style: italic;
-  font-size: clamp(28px, 8vw, 60px);
-  line-height:1;
-  margin-bottom: 28px;
+  display:flex; gap:12px; justify-content:center; align-items:baseline;
+  font-family:"Baskerville", serif; font-style:italic;
+  font-size: clamp(28px, 8vw, 64px);   
+  line-height:1; margin-bottom: 28px;
 }
 
 /* Nav */
 .links {
-  display:flex;
-  justify-content:center;
-  gap: clamp(16px, 6vw, 40px);
-  flex-wrap: wrap;                 /* wrap nicely on small screens */
-  font-size: clamp(18px, 5vw, 28px);
-  margin-bottom: 20px;
+ display:flex; justify-content:center; flex-wrap:wrap;
+  gap: clamp(16px, 6vw, 48px);         /* ↑ more desktop spacing */
+  font-size: clamp(18px, 4.2vw, 32px); /* ↑ larger desktop max */
+  margin-bottom: 24px;
 }
 .links a { text-decoration:none; color:#111; }
 .links a:active, .links a:hover { color:pink; }
 
 .heart {
-  margin-top:16px;
-  width: clamp(28px, 8vw, 52px);
-  height:auto;
+ width: clamp(28px, 6vw, 60px); 
 }
 
 /* Images & media should scale */
 img, video { max-width:100%; height:auto; }
 
 /* --- Breakpoints: enhance for larger screens --- */
-@media (min-width: 768px) {
-  .wrapper { padding: 40px; }
-  .name-row { margin-bottom: 36px; }
-  .links { margin-bottom: 28px; }
-}
 @media (min-width: 1024px) {
-  :root { --max-width: 900px; }
+  .wrapper{ padding: 56px 40px; }      /* more breathing room */
+  .name-row{ margin-bottom: 36px; font-size: clamp(28px, 6.5vw, 80px); } /* bigger cap */
+  .links{ margin-bottom: 32px; }
+  .heart{ width: clamp(32px, 4vw, 68px); }
+}
+@media (min-width: 1440px){
+  :root{ --max-width: 1100px; }
+  .name-row{ font-size: clamp(28px, 5vw, 96px); }  /* hero scale */
+  .links{ gap: 56px; font-size: clamp(18px, 2vw, 36px); }
+  .wrapper{ padding-top: 8vh; } /* push content lower for hero vibe */
+}
 }
