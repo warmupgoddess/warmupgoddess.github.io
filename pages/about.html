@@ -1,137 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>about me</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mrinalini - about</title>
+
+  <!-- shared site stylezz -->
+  <link rel="stylesheet" href="/assets/styles.css" />
 
   <style>
-    /* ---------- Base ---------- */
-    :root{
-      --ink:#000;
-      --bg:#fff6f6;
-      --pink:#ff69b4;
-      --max:760px;        /* content width */
+    /* page-specific styles */
+    :root {
+      --pink: #ff69b4;
+      --max: 760px;
     }
 
-    html,body{height:100%}
-    body{
-      background:var(--bg);
-      margin:0;
-      color:var(--ink);
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",
-                  "Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    body {
+      background:#fff6f6;
       font-weight:300;
       line-height:1.7;
-      display:flex;
-      flex-direction:column;
-      text-align: center;
-      min-height:100vh;
-      position:relative;
-    }
-    .bold-text {
-        font-weight: 500;
-    }
-
-    /* ---------- Name row ---------- */
-    .name-row{
-      position:absolute;
-      top:40px; left:5%; right:5%;
-      display:flex; justify-content:space-between;
-      font-family:Baskerville, "Libre Baskerville", serif;
-      font-style:italic; font-size:50px;
-    }
-
-    /* ---------- Heart ---------- */
-    .heart-wrapper{display:flex; justify-content:center; margin-top:70px; margin-bottom:10px;}
-    .heart{width:44px; height:auto; opacity:.9;}
-
-    /* ---------- Content ---------- */
-    .content{
-      max-width:var(--max);
-      margin:30px auto 0;
-      padding:0 20px;
-    }
-
-    .lead{
-      font-size:28px;
-      line-height:1.5;
-      font-weight: 100;
-      margin:18px 0 28px;
       text-align:center;
+      color:#000;
     }
 
-    .content p{
+    .heart-wrapper {
+      display:flex;
+      justify-content:center;
+      margin-top:40px;
+      margin-bottom:20px;
+    }
+    .heart {
+      width:44px;
+      height:auto;
+      opacity:.9;
+    }
+
+    .content {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .lead {
+      font-size: clamp(22px, 4vw, 28px);
+      line-height:1.5;
+      font-weight:100;
+      margin: 18px 0 28px;
+    }
+
+    .content p {
       margin:14px 0;
-      font-size:20px;
+      font-size: clamp(18px, 3.5vw, 20px);
     }
-    
-    .content p.lead{
-  font-size:28px;
-  line-height:1.5;
-  margin:18px 0 28px;
-  text-align:center;
-}
 
-    /* pink links */
-    .highlight{
+    .bold-text { font-weight:500; }
+
+    .highlight {
       color:var(--pink);
       text-decoration:none;
-      text-align:center;
     }
-    .highlight:hover{ text-decoration:underline; }
+    .highlight:hover { text-decoration:underline; }
 
-    /* ---------- Footer (home) ---------- */
-    .footer-link{
-      margin-top:auto;
-      text-align:center;
-      margin-bottom:30px;
-      font-family:Baskerville, "Libre Baskerville", serif;
-      font-style:italic;
-      font-size:48px;
+    .footer-link {
+      margin-top:50px;
+      margin-bottom:40px;
+      font-family: Baskerville, "Libre Baskerville", serif;
+      font-style: italic;
+      font-size: clamp(36px, 6vw, 48px);
     }
-    .footer-link a{ color:var(--ink); text-decoration:none; }
-    .footer-link a:hover{ color:var(--pink); }
-
-    /* ---------- Small screens ---------- */
-    @media (max-width:700px){
-      .name-row{font-size:36px; top:24px;}
-      .heart-wrapper{margin-top:58px}
-      .lead{font-size:24px}
-      .content p{font-size:18px}
-      .footer-link{font-size:40px}
+    .footer-link a {
+      color:#000;
+      text-decoration:none;
     }
+    .footer-link a:hover { color:var(--pink); }
   </style>
 </head>
 <body>
-  <!-- name row -->
-  <div class="name-row">
-    <div>mrinalini</div>
-    <div>keskar</div>
-  </div>
+  <div class="wrapper">
+    <div class="content">
+      <!-- name row -->
+      <div class="name-row">
+        <div>mrinalini</div>
+        <div>keskar</div>
+      </div>
 
-  <!-- heart -->
-  <div class="heart-wrapper">
-    <img src="../assets/images/heart.png" alt="heart" class="heart">
-  </div>
+      <!-- heart -->
+      <div class="heart-wrapper">
+        <img src="/assets/images/heart.png" alt="heart" class="heart" />
+      </div>
 
-  <!-- content -->
-  <main class="content">
-    <p class="lead">creating curated experiences that tell stories in the digital age ♥</p>
+      <!-- text -->
+      <main class="content">
+        <p class="lead">creating curated experiences that tell stories in the digital age ♥</p>
 
+        <p>i’m a senior at UCLA studying economics, data science engineering, & french.</p>
+        <p>i’m driven by strategy that balances economic growth and long-term cultural resonance.</p>
+        <p><span class="bold-text">i strive to create products that empower communities to connect, create, and live with intention.</span></p>
+        <p>this summer i’m {stealth} in portland & nyc, + taking CS 32.</p>
 
-    <p>i’m a senior at UCLA studying economics, data science engineering, & french.</p>
-    <p>i’m driven by strategy that balances economic growth and long-term cultural resonance.</p>
-    <p> <span class="bold-text">i strive to create products that empower communities to connect, create, and live with intention.</span></p>
-    <p>this summer i’m {stealth} in portland & nyc, + taking CS 32.</p>
+        <p><a class="highlight" href="reading.html">what i'm reading</a></p>
+        <p><a class="highlight" href="projects.html">don't just read, see what i've worked on</a></p>
+      </main>
 
-    <p><a class="highlight" href="reading.html">what i'm reading</a></p>
-    <p><a class="highlight" href="projects.html">don't just read, see what i've worked on</a></p>
-  </main>
-
-  <!-- footer -->
-  <div class="footer-link">
-    <a href="homepage.html"><em>home</em></a>
+      <!-- footer -->
+      <div class="footer-link">
+        <a href="homepage.html"><em>home</em></a>
+      </div>
+    </div>
   </div>
 </body>
 </html>
