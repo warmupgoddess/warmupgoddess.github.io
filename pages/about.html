@@ -9,10 +9,9 @@
   <link rel="stylesheet" href="/assets/styles.css" />
 
   <style>
-    /* page-specific tweaks for the Figma look */
     :root{
-      --page-max: 960px;      /* wider hero width on desktop */
-      --copy-max: 780px;      /* paragraph measure */
+      --page-max: 960px;     /* wider hero width on desktop */
+      --copy-max: 780px;     /* paragraph measure */
       --pink: #ff69b4;
     }
 
@@ -23,83 +22,77 @@
       line-height:1.6;
     }
 
-    /* Put the name at the left/right edges like Figma */
-    .name-row{
-      justify-content: space-between;   /* edges */
-      width: min(92vw, 1200px);
-      margin: 28px auto 24px;
-      font-size: clamp(32px, 6vw, 64px);
+    /* Top bar: name • heart PNG • name */
+    .topbar{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items:center;
+      width:min(92vw, 1200px);
+      margin:28px auto 24px;
+      gap:12px;
+      font-family:"Baskerville", serif;
+      font-style:italic;
+      font-size:clamp(32px, 6vw, 64px);
+      line-height:1;
+    }
+    .topbar .first{ justify-self:start; }
+    .topbar .last { justify-self:end; }
+    .top-heart{
+      width:clamp(20px, 2.8vw, 32px);
+      height:auto;
+      opacity:.95;
+      filter:drop-shadow(0 1px 0 rgba(0,0,0,.08));
     }
 
     /* One content wrapper only */
-    .page {
-      width: 100%;
-      max-width: var(--page-max);
-      margin: 0 auto;
-      padding: 0 20px 56px;
-      text-align: center;
+    .page{
+      width:100%;
+      max-width:var(--page-max);
+      margin:0 auto;
+      padding:0 20px 56px;
+      text-align:center;
     }
 
-    /* inline heart + lead line */
-    .lead-row{
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      margin: 14px 0 28px;
-    }
-    .lead {
-      font-size: clamp(32px, 5.2vw, 56px);
-      line-height: 1.25;          /* tighter for hero */
-      font-weight: 200;
-      letter-spacing: 0.01em;
-      margin: 0;
-    }
-    .lead-heart{
-      width: clamp(18px, 2.6vw, 28px);
-      height: auto;
-      transform: translateY(2px);
-      opacity: .9;
+    /* Lead line (emoji heart stays inline with text) */
+    .lead{
+      font-size:clamp(32px, 5.2vw, 56px);
+      line-height:1.25;
+      font-weight:200;
+      letter-spacing:0.01em;
+      margin:14px 0 28px;
     }
 
     /* paragraphs */
-    .copy {
-      max-width: var(--copy-max);
-      margin: 0 auto;
-    }
-    .copy p{
-      margin: 14px auto;
-      font-size: clamp(18px, 2.3vw, 22px);
-    }
-    .copy p strong { font-weight: 600; }
+    .copy{ max-width:var(--copy-max); margin:0 auto; }
+    .copy p{ margin:14px auto; font-size:clamp(18px, 2.3vw, 22px); }
+    .copy p strong{ font-weight:600; }
 
     /* pink links */
-    .highlight{ color: var(--pink); text-decoration: none; }
-    .highlight:hover{ text-decoration: underline; }
+    .highlight{ color:var(--pink); text-decoration:none; }
+    .highlight:hover{ text-decoration:underline; }
 
     /* footer link */
     .footer-link{
-      margin-top: 48px;
-      font-family: Baskerville, "Libre Baskerville", serif;
-      font-style: italic;
-      font-size: clamp(36px, 4.5vw, 48px);
+      margin-top:48px;
+      font-family:Baskerville, "Libre Baskerville", serif;
+      font-style:italic;
+      font-size:clamp(36px, 4.5vw, 48px);
     }
     .footer-link a{ color:#000; text-decoration:none; }
-    .footer-link a:hover{ color: var(--pink); }
+    .footer-link a:hover{ color:var(--pink); }
   </style>
 </head>
 <body>
-  <!-- edges name -->
-  <div class="name-row">
-    <div>mrinalini</div>
-    <div>keskar</div>
-  </div>
+  <!-- Top bar with centered PNG heart -->
+  <header class="topbar">
+    <div class="first">mrinalini</div>
+    <img class="top-heart" src="/assets/images/heart.png" alt="" aria-hidden="true" />
+    <div class="last">keskar</div>
+  </header>
 
   <div class="page">
-    <!-- inline-heart hero line -->
-    <div class="lead-row">
-      <img class="lead-heart" src="/assets/images/heart.png" alt="heart">
-      <h1 class="lead">connect, create, live with intention…</h1>
-    </div>
+    <!-- Lead line with emoji heart -->
+    <h1 class="lead">♥ connect, create, live with intention…</h1>
 
     <!-- copy -->
     <section class="copy">
@@ -119,3 +112,4 @@
   </div>
 </body>
 </html>
+
