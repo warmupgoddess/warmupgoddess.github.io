@@ -3,109 +3,118 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>mrinalini - about</title>
+  <title>mrinalini – about</title>
 
-  <!-- shared site stylezz -->
+  <!-- shared styles -->
   <link rel="stylesheet" href="/assets/styles.css" />
 
   <style>
-    /* page-specific styles */
-    :root {
+    /* page-specific tweaks for the Figma look */
+    :root{
+      --page-max: 960px;      /* wider hero width on desktop */
+      --copy-max: 780px;      /* paragraph measure */
       --pink: #ff69b4;
-      --max: 760px;
     }
 
-    body {
+    body{
       background:#fff6f6;
-      font-weight:300;
-      line-height:1.7;
-      text-align:center;
       color:#000;
+      font-weight:300;
+      line-height:1.6;
     }
 
-    .heart-wrapper {
-      display:flex;
-      justify-content:center;
-      margin-top:40px;
-      margin-bottom:20px;
-    }
-    .heart {
-      width:44px;
-      height:auto;
-      opacity:.9;
+    /* Put the name at the left/right edges like Figma */
+    .name-row{
+      justify-content: space-between;   /* edges */
+      width: min(92vw, 1200px);
+      margin: 28px auto 24px;
+      font-size: clamp(32px, 6vw, 64px);
     }
 
-    .content {
-      max-width: var(--max);
+    /* One content wrapper only */
+    .page {
+      width: 100%;
+      max-width: var(--page-max);
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 20px 56px;
+      text-align: center;
     }
 
+    /* inline heart + lead line */
+    .lead-row{
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin: 14px 0 28px;
+    }
     .lead {
-      font-size: clamp(40px, 4vw, 48px);
-      line-height:1.5;
-      font-weight:100;
-      margin: 36px 0 48px;
+      font-size: clamp(32px, 5.2vw, 56px);
+      line-height: 1.25;          /* tighter for hero */
+      font-weight: 200;
+      letter-spacing: 0.01em;
+      margin: 0;
+    }
+    .lead-heart{
+      width: clamp(18px, 2.6vw, 28px);
+      height: auto;
+      transform: translateY(2px);
+      opacity: .9;
     }
 
-    .content p {
-      margin:14px 0;
-      font-size: clamp(18px, 3.5vw, 20px);
+    /* paragraphs */
+    .copy {
+      max-width: var(--copy-max);
+      margin: 0 auto;
     }
-
-    .bold-text { font-weight:500; }
-
-    .highlight {
-      color:var(--pink);
-      text-decoration:none;
+    .copy p{
+      margin: 14px auto;
+      font-size: clamp(18px, 2.3vw, 22px);
     }
-    .highlight:hover { text-decoration:underline; }
+    .copy p strong { font-weight: 600; }
 
-    .footer-link {
-      margin-top:50px;
-      margin-bottom:40px;
+    /* pink links */
+    .highlight{ color: var(--pink); text-decoration: none; }
+    .highlight:hover{ text-decoration: underline; }
+
+    /* footer link */
+    .footer-link{
+      margin-top: 48px;
       font-family: Baskerville, "Libre Baskerville", serif;
       font-style: italic;
-      font-size: clamp(36px, 6vw, 48px);
+      font-size: clamp(36px, 4.5vw, 48px);
     }
-    .footer-link a {
-      color:#000;
-      text-decoration:none;
-    }
-    .footer-link a:hover { color:var(--pink); }
+    .footer-link a{ color:#000; text-decoration:none; }
+    .footer-link a:hover{ color: var(--pink); }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="content">
-      <!-- name row -->
-      <div class="name-row">
-        <div>mrinalini</div>
-        <div>keskar</div>
-      </div>
+  <!-- edges name -->
+  <div class="name-row">
+    <div>mrinalini</div>
+    <div>keskar</div>
+  </div>
 
-      <!-- heart -->
-      <div class="heart-wrapper">
-        <img src="/assets/images/heart.png" alt="heart" class="heart" />
-      </div>
+  <div class="page">
+    <!-- inline-heart hero line -->
+    <div class="lead-row">
+      <img class="lead-heart" src="/assets/images/heart.png" alt="heart">
+      <h1 class="lead">connect, create, live with intention…</h1>
+    </div>
 
-      <!-- text -->
-      <main class="content">
-        <p class="lead">♥ connect, create, live with intention...</p>
+    <!-- copy -->
+    <section class="copy">
+      <p>i’m a senior at UCLA studying economics, data science engineering, & french.</p>
+      <p>i’m driven by strategy that balances economic growth and long-term cultural resonance.</p>
+      <p><strong>i strive to create products that empower communities and tell stories in the digital age.</strong></p>
+      <p>this summer i’m {stealth} in portland & nyc, + taking CS 32.</p>
 
-        <p>i’m a senior at UCLA studying economics, data science engineering, & french.</p>
-        <p>i’m driven by strategy that balances economic growth and long-term cultural resonance.</p>
-        <p><span class="bold-text">i strive to create products that empower communities and tell stories in the digital age.</span></p>
-        <p>this summer i’m {stealth} in portland & nyc, + taking CS 32.</p>
+      <p><a class="highlight" href="reading.html">what i'm reading</a></p>
+      <p><a class="highlight" href="projects.html">don't just read, see what i've worked on</a></p>
+    </section>
 
-        <p><a class="highlight" href="reading.html">what i'm reading</a></p>
-        <p><a class="highlight" href="projects.html">don't just read, see what i've worked on</a></p>
-      </main>
-
-      <!-- footer -->
-      <div class="footer-link">
-        <a href="homepage.html"><em>home</em></a>
-      </div>
+    <!-- footer -->
+    <div class="footer-link">
+      <a href="homepage.html"><em>home</em></a>
     </div>
   </div>
 </body>
