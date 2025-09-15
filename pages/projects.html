@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>projects</title>
+
+  <style>
+    :root{
+      --bg:#fff6f6;
+      --ink:#111;
+      --gap:60px;          /* vertical spacing between projects */
+      --max:1100px;        /* header/page clamp (not used by .projects) */
+      --imgW:680px;        /* project image width on desktop */
+    }
+
+    /* base */
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",
+                   "Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.6;
+      display:flex; flex-direction:column; min-height:100vh;
+    }
+    img{display:block; max-width:100%; height:auto}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
+
+    /* header */
+    .name-row{
+      position:absolute; top:40px; left:5%; right:5%;
+      display:flex; justify-content:space-between;
+      font-family:Baskerville,serif; font-style:italic; font-size:50px;
+    }
+    .heart-wrapper{display:flex; justify-content:center; margin:40px 0}
+    .heart{width:50px; height:auto; opacity:.9}
+
+    /* projects column (full width, then center each card) */
+    .projects.wrap{max-width:none; padding:0;}  /* ignore .wrap clamp here */
+    .projects{
+      display:flex; flex-direction:column; align-items:center;
+      gap:var(--gap); margin:10px 0 70px;
+    }
+
+    /* one centered project block */
+    .project{
+      display:flex; flex-direction:column; align-items:center; text-align:center;
+      width:min(100%, var(--imgW)); margin-inline:auto;
+    }
+
+    .project a.thumb{display:block; width:100%; transition:transform .18s ease, box-shadow .18s ease;}
+    .project a.thumb:hover{transform:translateY(-3px) scale(1.02);}
+    .project .thumb img{width:100%; height:auto; object-fit:contain;}
+
+    /* LOCKED project: fade a replacement image in on hover */
+.project.locked .thumb{ position: relative; }               /* create a stacking context */
+.project.locked .thumb .base-img{
+  display:block; width:100%; height:auto;
+}
+.project.locked .thumb .hover-img{
+  position:absolute; inset:0;              /* sit exactly on top of the base image */
+  opacity:0;                               /* hidden by default */
+  transition: opacity .25s ease;
+  pointer-events:none;                     /* keep link behavior the same */
+}
+.project.locked .thumb:hover .hover-img{ opacity:1; }
+
+
+
+
+    /* text */
+    .title{font-size:34px; margin:16px 0 2px; font-weight:300;}
+    .role{font-size:24px; color:#333; margin:2px 0 6px; font-weight:200;}
+    .tagline{font-family:Baskerville,serif; font-style:italic; font-size:30px; color:#222; margin:0;}
+
+    /* footer */
+    .footer-link{margin-top:auto; text-align:center; margin-bottom:30px;
+      font-family:Baskerville,serif; font-style:italic; font-size:42px;}
+    .footer-link a{color:var(--ink); text-decoration:none;}
+    .footer-link a:hover{color:#ff69b4;}
+
+    
+
+    /* responsive */
+    @media (max-width:900px){
+      .name-row{font-size:38px; padding-top:28px}
+      :root{--imgW:92vw; --gap:46px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- header -->
+  <div class="name-row">
+    <div>mrinalini</div>
+    <div>keskar</div>
+  </div>
+  <div class="heart-wrapper">
+    <a href = "homepage.html">
+    <img class="heart" src="heart.png" alt="heart">
+    </a>
+  </div>
+
+  <!-- projects list -->
+  <main class="projects wrap">
+
+    <section class="project">
+      <a class="thumb" href="garde-robe.html">
+        <img src="PROJECT-GR.png" alt="Garde-Robe preview">
+      </a>
+      <div class="title">Garde-Robe</div>
+      <div class="role">Product Lead</div>
+      <p class="tagline">shop online, with friends</p>
+    </section>
+
+    <section class="project locked">
+      <a class="thumb" href="">
+        <img class="base-img" src="PROJECT-BG.png" alt="Mangalam preview">
+        <img class="hover-img" src="LOCK-BG.png" alt="Private preview – coming soon">
+      </a>
+      <div class="title">Mangalam</div>
+      <div class="role">Product Lead</div>
+      <p class="tagline">chanting, learning, and community interface</p>
+    </section>
+
+    <section class="project">
+      <a class="thumb" href="bwib.html">
+        <img src="PROJECT-BWIB.png" alt="Bruin Women in Business preview">
+      </a>
+      <div class="title">Bruin Women in Business</div>
+      <div class="role">Director of PR</div>
+      <p class="tagline">educate. empower. succeed.</p>
+    </section>
+
+    <section class="project">
+      <a class="thumb" href="blackbook.html">
+        <img src="PROJECT-BB.png" alt="black book preview">
+      </a>
+      <div class="title">black book</div>
+      <div class="role">Co-Author</div>
+      <p class="tagline">you see LA?</p>
+    </section>
+
+  
+
+  </main>
+
+  <!-- footer -->
+  <div class="footer-link">
+    <a href="homepage.html"><em>home</em></a>
+  </div>
+
+</body>
+</html>

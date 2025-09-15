@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>projects - garde-robe</title>
+<style>
+  body {
+    font-family: "SF Pro Display", sans-serif;
+    background-color: #fdf3f3;
+    margin: 0;
+    padding: 0;
+  }
+  .name-row {
+  position: absolute;
+  top: 40px;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Baskerville', serif;
+  font-style: italic;
+  font-size: 50px;
+}
+
+/* Heart */
+.heart-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.heart {
+  width: 50px;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* Blue band section */
+.blue-band {
+  background-color: #cfd8f7; /* match your original pastel blue */
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.blue-band .section-label {
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.blue-band .section-text {
+  font-family: 'Baskerville', serif;
+  font-style: italic;
+  font-size: 50px;
+  max-width: 70%;
+}
+
+  .image-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+  }
+
+  .image-row img {
+    height: auto;
+    max-height: 600px; /* keeps large ones from being huge */
+    max-width: 100%;
+    object-fit: contain;
+  
+   /* Add smooth hover animation */
+   transition: transform 0.7s ease;
+}
+
+.image-row img:hover {
+  transform: scale(1.10); /* Slightly larger on hover */
+}
+
+/* --- bands & content blocks under the images --- */
+.section-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* blue band */
+.band {
+  background:#cfd8f7;
+  padding: 50px 0;
+  margin: 50px 0;
+}
+.band .band-inner {
+  display:grid;
+  grid-template-columns: 360px 1fr; /* label | main text */
+  gap: 24px;
+  align-items: center;
+}
+.band .label {
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color:#2d2d2d;
+}
+.band .content-italic {
+  font-family: Baskerville, "Libre Baskerville", serif;
+  font-style: italic;
+  font-size: 50px;
+  line-height: 1.12;
+}
+
+/* narrative paragraph block */
+.summary-copy {
+  text-align: center;
+  color:#1d1d1d;
+  margin: 28px auto;
+  font-size: 24px;
+  font-weight:300;
+}
+.summary-copy p { margin: 10px 0; }
+.summary-copy bold { font-weight: 400; }
+
+/* results band - reuse .band, add metrics */
+.metrics {
+  display:flex;
+  justify-content:center;
+  gap: 120px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.metric strong {
+  display:block;
+  font-family: Baskerville, serif;
+  font-style: italic;
+  font-size: 80px;
+  letter-spacing:.5px;
+}
+.metric span {
+  display:block;
+  margin-top: 6px;
+  font-size: 16px;
+  color:#333;
+  text-align:center;
+  max-width: 280px;
+}
+
+.looks-image-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+  }
+.looks-image-row img {
+    height: auto;
+    max-height: 460px; /* keeps large ones from being huge */
+    max-width: 100%;
+    object-fit: contain;
+
+   /* Add smooth hover animation */
+   transition: transform 0.7s ease;
+}
+
+.looks-image-row img:hover {
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+/* responsive */
+@media (max-width: 900px){
+  .band .band-inner { grid-template-columns: 1fr; text-align:center; }
+  .metrics { gap: 60px; }
+}
+
+  
+</style>
+</head>
+<body>
+    <div class="name-row">
+        <div>mrinalini</div>
+        <div>keskar</div>
+      </div>
+    
+      <div class="heart-wrapper">
+        <a href = "homepage.html">
+        <img src="heart.png" alt="heart" class="heart">
+      </a>
+      </div>
+
+    <!-- Blue band section -->
+<div class="blue-band">
+    <div class="logo">
+      <img src="grobviously.png" alt="Garde-Robe Logo" style="height:40px; width:auto;">
+    </div>
+    <div class="solutions">
+      <div>SOLUTIONS</div>
+      <div>UI Flows</div>
+      <div>Messaging</div>
+      <div>Feature Creation</div>
+      <div>Social Marketing</div>
+    </div>
+  </div>
+
+<div class="image-row">
+  <img src="wishsale.png" alt="Wishlist Sale">
+  <img src="maia.png" alt="Maia Outfit">
+  <img src="productview.png" alt="Product View">
+</div>
+
+<!-- Project Summary band -->
+<section class="band">
+    <div class="band-inner section-wrap">
+      <div class="label">Project Summary</div>
+      <div class="content-italic">
+        Re-imagining the online shopping experience for Gen-Z:
+        <p> making shopping social + smarter </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Narrative / write-up -->
+  <section class="summary-copy section-wrap">
+    <p>As Product Lead at Garde-Robe, I worked directly with the CEO/Founder to imagine the power user:</p>
+    <p><bold>stylish, tech-savvy, values the opinion of their social circle highly.</bold></p>
+    <p>From here, we imagined how to solve this user’s shopping issues to create a more streamlined app where they could find inspiration, organize shopping to make meaningful purchases, seek advice from friends, peek at what friends are buying,  &amp; have a place to archive their closet pieces &amp; outfits.</p>
+    <p><bold>A shopping ecosystem.</bold></p>
+  </section>
+  
+  <!-- Results Summary band -->
+  <section class="band">
+    <div class="band-inner section-wrap" style="align-items:flex-start;">
+      <div class="label" style="padding-top:8px;">Results Summary</div>
+      <div>
+        <div class="metrics">
+          <div class="metric">
+            <strong>95%</strong>
+            <span>reduction in dropout rates during onboarding</span>
+          </div>
+          <div class="metric">
+            <strong>200%</strong>
+            <span>increase in engagement</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="looks-image-row">
+    <img src="itemstagged.png" alt="Wishlist Sale">
+    <img src="looks.png" alt="Maia Outfit">
+    <img src="tagselect.png" alt="Product View">
+  </div>
+  
+  <section class="summary-copy section-wrap">
+    <p>In any product targeting Gen-Z, alignment with culture, trends, and visual language is extremely important, but so is authenticity. </p>
+    <p>(we see you, Instagram captions heavy with emoji 🙄 and em-dash —). </p>
+    <p>The goal was to create a brand identity that would be consistent across all text notifications, in-app pop ups, email communications, and social media marketing. Then to ensure this messaging was consistent with all visual communication.</p>
+    <p><bold>view the complete work sample below. </bold></p>
+  </section>
+
+</body>
+</html>

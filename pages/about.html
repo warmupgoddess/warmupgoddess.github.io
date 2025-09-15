@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>about me</title>
+
+  <style>
+    /* ---------- Base ---------- */
+    :root{
+      --ink:#000;
+      --bg:#fff6f6;
+      --pink:#ff69b4;
+      --max:760px;        /* content width */
+    }
+
+    html,body{height:100%}
+    body{
+      background:var(--bg);
+      margin:0;
+      color:var(--ink);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",
+                  "Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+      font-weight:300;
+      line-height:1.7;
+      display:flex;
+      flex-direction:column;
+      text-align: center;
+      min-height:100vh;
+      position:relative;
+    }
+    .bold-text {
+        font-weight: 500;
+    }
+
+    /* ---------- Name row ---------- */
+    .name-row{
+      position:absolute;
+      top:40px; left:5%; right:5%;
+      display:flex; justify-content:space-between;
+      font-family:Baskerville, "Libre Baskerville", serif;
+      font-style:italic; font-size:50px;
+    }
+
+    /* ---------- Heart ---------- */
+    .heart-wrapper{display:flex; justify-content:center; margin-top:70px; margin-bottom:10px;}
+    .heart{width:44px; height:auto; opacity:.9;}
+
+    /* ---------- Content ---------- */
+    .content{
+      max-width:var(--max);
+      margin:30px auto 0;
+      padding:0 20px;
+    }
+
+    .lead{
+      font-size:28px;
+      line-height:1.5;
+      font-weight: 100;
+      margin:18px 0 28px;
+      text-align:center;
+    }
+
+    .content p{
+      margin:14px 0;
+      font-size:20px;
+    }
+    
+    .content p.lead{
+  font-size:28px;
+  line-height:1.5;
+  margin:18px 0 28px;
+  text-align:center;
+}
+
+    /* pink links */
+    .highlight{
+      color:var(--pink);
+      text-decoration:none;
+      text-align:center;
+    }
+    .highlight:hover{ text-decoration:underline; }
+
+    /* ---------- Footer (home) ---------- */
+    .footer-link{
+      margin-top:auto;
+      text-align:center;
+      margin-bottom:30px;
+      font-family:Baskerville, "Libre Baskerville", serif;
+      font-style:italic;
+      font-size:48px;
+    }
+    .footer-link a{ color:var(--ink); text-decoration:none; }
+    .footer-link a:hover{ color:var(--pink); }
+
+    /* ---------- Small screens ---------- */
+    @media (max-width:700px){
+      .name-row{font-size:36px; top:24px;}
+      .heart-wrapper{margin-top:58px}
+      .lead{font-size:24px}
+      .content p{font-size:18px}
+      .footer-link{font-size:40px}
+    }
+  </style>
+</head>
+<body>
+  <!-- name row -->
+  <div class="name-row">
+    <div>mrinalini</div>
+    <div>keskar</div>
+  </div>
+
+  <!-- heart -->
+  <div class="heart-wrapper">
+    <img src="heart.png" alt="heart" class="heart">
+  </div>
+
+  <!-- content -->
+  <main class="content">
+    <p class="lead">creating curated experiences that tell stories in the digital age ♥</p>
+
+
+    <p>i’m a senior at UCLA studying economics, data science engineering, & french.</p>
+    <p>i’m driven by strategy that balances economic growth and long-term cultural resonance.</p>
+    <p> <span class="bold-text">i strive to create products that empower communities to connect, create, and live with intention.</span></p>
+    <p>this summer i’m {stealth} in portland & nyc, + taking CS 32.</p>
+
+    <p><a class="highlight" href="reading.html">what i'm reading</a></p>
+    <p><a class="highlight" href="projects.html">don't just read, see what i've worked on</a></p>
+  </main>
+
+  <!-- footer -->
+  <div class="footer-link">
+    <a href="homepage.html"><em>home</em></a>
+  </div>
+</body>
+</html>

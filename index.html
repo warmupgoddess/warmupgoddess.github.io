@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mrinalinikeskar ♥</title>
+    <style>
+        body {
+            font-family: Baskerville;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff3f3;
+        }
+        .container {
+            position: relative;
+            text-align: center;
+        }
+        .heart-image {
+            width: 150px;
+            height: 150px;
+            display: block;
+            margin: 0 auto;
+            /* Add smooth hover animation */
+            transition: transform 0.7s ease;
+        }
+        .heart-image:hover {
+            transform: scale(1.10); /* Slightly larger on hover */
+        }
+        .enter-link {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-decoration: none;
+            font-size: 40px;
+            font-weight: light;
+            font-style: italic;
+            color: #000000;
+            transition: transform 0.4s ease; /* Smooth transition */
+        }
+        .enter-link:hover {
+            color: lightpink;
+        }
+        /* Links that are always pink */
+        .always-pink {
+            color: pink; /* Always pink */
+            text-decoration: none; /* Optional: Remove underline */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="heart.png" alt="Pink Heart" class="heart-image">
+        <a href="homepage.html" class="enter-link">enter</a>
+    </div>
+</body>
+</html>
+
