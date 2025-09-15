@@ -1,259 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>projects - garde-robe</title>
-<style>
-  body {
-    font-family: "SF Pro Display", sans-serif;
-    background-color: #fdf3f3;
-    margin: 0;
-    padding: 0;
-  }
-  .name-row {
-  position: absolute;
-  top: 40px;
-  left: 5%;
-  right: 5%;
-  display: flex;
-  justify-content: space-between;
-  font-family: 'Baskerville', serif;
-  font-style: italic;
-  font-size: 50px;
-}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>projects – garde-robe</title>
 
-/* Heart */
-.heart-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
+  <!-- shared site styles -->
+  <link rel="stylesheet" href="/assets/styles.css" />
 
-.heart {
-  width: 50px;
-  height: auto;
-  opacity: 0.9;
-}
+  <style>
+    :root{
+      --page-max: 1100px;        /* overall page width */
+      --copy-max: 820px;         /* paragraph measure */
+      --ink: #111;
+      --pink: #ff69b4;
+      --blue: #cfd8f7;
+    }
 
-/* Blue band section */
-.blue-band {
-  background-color: #cfd8f7; /* match your original pastel blue */
-  padding: 20px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    body{
+      background:#fff6f6;
+      color:var(--ink);
+      font-weight:300;
+      line-height:1.6;
+    }
 
-.blue-band .section-label {
-  font-family: 'SF Pro Display', sans-serif;
-  font-size: 24px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+    /* Top bar: name • heart PNG • name */
+    .topbar{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items:center;
+      width:min(92vw, 1200px);
+      margin:28px auto 24px;
+      gap:12px;
+      font-family:"Baskerville", serif;
+      font-style:italic;
+      font-size:clamp(32px, 6vw, 64px);
+      line-height:1;
+    }
+    .topbar .first{ justify-self:start; }
+    .topbar .last { justify-self:end; }
+    .topbar a{ display:inline-block; line-height:0; }
+    .top-heart{
+      width:clamp(20px, 2.8vw, 32px);
+      height:auto;
+      opacity:.95;
+      filter:drop-shadow(0 1px 0 rgba(0,0,0,.08));
+    }
 
-.blue-band .section-text {
-  font-family: 'Baskerville', serif;
-  font-style: italic;
-  font-size: 50px;
-  max-width: 70%;
-}
+    /* Page container */
+    .page{
+      width:100%;
+      max-width:var(--page-max);
+      margin:0 auto;
+      padding:0 20px 64px;
+    }
 
-  .image-row {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px;
-  }
+    /* Blue header band */
+    .blue-band{
+      background:var(--blue);
+      border-radius:12px;
+      padding:16px 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+    }
+    .blue-band .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .blue-band .brand img{ height:40px; width:auto; }
+    .blue-band .label{
+      font-size:12px;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      opacity:.8;
+      margin-bottom:6px;
+    }
+    .blue-band .pills{
+      display:flex; flex-wrap:wrap; gap:10px;
+    }
+    .pill{
+      font-size:14px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.7);
+      border:1px solid rgba(0,0,0,.06);
+    }
 
-  .image-row img {
-    height: auto;
-    max-height: 600px; /* keeps large ones from being huge */
-    max-width: 100%;
-    object-fit: contain;
-  
-   /* Add smooth hover animation */
-   transition: transform 0.7s ease;
-}
+    @media (min-width: 720px){
+      .blue-band{
+        grid-template-columns: auto 1fr;
+        align-items:center;
+      }
+    }
 
-.image-row img:hover {
-  transform: scale(1.10); /* Slightly larger on hover */
-}
+    /* Image grids */
+    .gallery{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+      margin:24px 0 12px;
+    }
+    .gallery img{
+      width:100%;
+      height:auto;
+      object-fit:cover;
+      border-radius:10px;
+      transition: transform .6s ease;
+    }
+    .gallery img:hover{ transform:scale(1.03); }
 
-/* --- bands & content blocks under the images --- */
-.section-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    @media (min-width: 768px){
+      .gallery{ grid-template-columns: repeat(3, 1fr); gap:20px; }
+    }
 
-/* blue band */
-.band {
-  background:#cfd8f7;
-  padding: 50px 0;
-  margin: 50px 0;
-}
-.band .band-inner {
-  display:grid;
-  grid-template-columns: 360px 1fr; /* label | main text */
-  gap: 24px;
-  align-items: center;
-}
-.band .label {
-  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color:#2d2d2d;
-}
-.band .content-italic {
-  font-family: Baskerville, "Libre Baskerville", serif;
-  font-style: italic;
-  font-size: 50px;
-  line-height: 1.12;
-}
+    /* Bands */
+    .band{
+      background:var(--blue);
+      border-radius:12px;
+      padding:28px 18px;
+      margin:28px 0;
+    }
+    .band-inner{
+      max-width:var(--page-max);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:18px;
+    }
+    .band .label{
+      font-size:12px; text-transform:uppercase; letter-spacing:.5px; opacity:.8;
+    }
+    .band .content-italic{
+      font-family:Baskerville, "Libre Baskerville", serif;
+      font-style:italic;
+      font-size:clamp(26px, 4.6vw, 44px);
+      line-height:1.15;
+    }
+    @media (min-width: 900px){
+      .band-inner{ grid-template-columns: 280px 1fr; align-items:center; gap:24px; }
+    }
 
-/* narrative paragraph block */
-.summary-copy {
-  text-align: center;
-  color:#1d1d1d;
-  margin: 28px auto;
-  font-size: 24px;
-  font-weight:300;
-}
-.summary-copy p { margin: 10px 0; }
-.summary-copy bold { font-weight: 400; }
+    /* Narrative */
+    .summary-copy{
+      max-width:var(--copy-max);
+      margin:20px auto 8px;
+      text-align:center;
+      font-size:clamp(18px, 2.1vw, 22px);
+      font-weight:300;
+    }
+    .summary-copy p{ margin:12px 0; }
+    .summary-copy strong{ font-weight:600; }
 
-/* results band - reuse .band, add metrics */
-.metrics {
-  display:flex;
-  justify-content:center;
-  gap: 120px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
-.metric strong {
-  display:block;
-  font-family: Baskerville, serif;
-  font-style: italic;
-  font-size: 80px;
-  letter-spacing:.5px;
-}
-.metric span {
-  display:block;
-  margin-top: 6px;
-  font-size: 16px;
-  color:#333;
-  text-align:center;
-  max-width: 280px;
-}
-
-.looks-image-row {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px;
-  }
-.looks-image-row img {
-    height: auto;
-    max-height: 460px; /* keeps large ones from being huge */
-    max-width: 100%;
-    object-fit: contain;
-
-   /* Add smooth hover animation */
-   transition: transform 0.7s ease;
-}
-
-.looks-image-row img:hover {
-  transform: scale(1.05); /* Slightly larger on hover */
-}
-
-/* responsive */
-@media (max-width: 900px){
-  .band .band-inner { grid-template-columns: 1fr; text-align:center; }
-  .metrics { gap: 60px; }
-}
-
-  
-</style>
+    /* Metrics */
+    .metrics{
+      display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:8px;
+    }
+    .metric strong{
+      display:block; font-family:Baskerville, serif; font-style:italic;
+      font-size:clamp(44px, 9vw, 80px); letter-spacing:.5px; line-height:1;
+      text-align:center;
+    }
+    .metric span{
+      display:block; margin-top:6px; font-size:14px; color:#333; text-align:center; max-width:260px;
+    }
+  </style>
 </head>
 <body>
-    <div class="name-row">
-        <div>mrinalini</div>
-        <div>keskar</div>
-      </div>
-    
-      <div class="heart-wrapper">
-        <a href = "homepage.html">
-        <img src="../assets/heart.png" alt="heart" class="heart">
-      </a>
-      </div>
+  <!-- top bar with centered heart (clickable home) -->
+  <header class="topbar">
+    <div class="first">mrinalini</div>
+    <a href="homepage.html" aria-label="home">
+      <img class="top-heart" src="/assets/images/heart.png" alt="" />
+    </a>
+    <div class="last">keskar</div>
+  </header>
 
-    <!-- Blue band section -->
-<div class="blue-band">
-    <div class="logo">
-      <img src="../assets/images/grobviously.png" alt="Garde-Robe Logo" style="height:40px; width:auto;">
-    </div>
-    <div class="solutions">
-      <div>SOLUTIONS</div>
-      <div>UI Flows</div>
-      <div>Messaging</div>
-      <div>Feature Creation</div>
-      <div>Social Marketing</div>
-    </div>
-  </div>
-
-<div class="image-row">
-  <img src="../assets/images/wishsale.png" alt="Wishlist Sale">
-  <img src="../assets/images/maia.png" alt="Maia Outfit">
-  <img src="../assets/images/productview.png" alt="Product View">
-</div>
-
-<!-- Project Summary band -->
-<section class="band">
-    <div class="band-inner section-wrap">
-      <div class="label">Project Summary</div>
-      <div class="content-italic">
-        Re-imagining the online shopping experience for Gen-Z:
-        <p> making shopping social + smarter </p>
+  <main class="page">
+    <!-- blue intro band -->
+    <section class="blue-band">
+      <div class="brand">
+        <img src="/assets/images/grobviously.png" alt="Garde-Robe logo" />
+        <div class="label">project</div>
       </div>
-    </div>
-  </section>
-  
-  <!-- Narrative / write-up -->
-  <section class="summary-copy section-wrap">
-    <p>As Product Lead at Garde-Robe, I worked directly with the CEO/Founder to imagine the power user:</p>
-    <p><bold>stylish, tech-savvy, values the opinion of their social circle highly.</bold></p>
-    <p>From here, we imagined how to solve this user’s shopping issues to create a more streamlined app where they could find inspiration, organize shopping to make meaningful purchases, seek advice from friends, peek at what friends are buying,  &amp; have a place to archive their closet pieces &amp; outfits.</p>
-    <p><bold>A shopping ecosystem.</bold></p>
-  </section>
-  
-  <!-- Results Summary band -->
-  <section class="band">
-    <div class="band-inner section-wrap" style="align-items:flex-start;">
-      <div class="label" style="padding-top:8px;">Results Summary</div>
       <div>
-        <div class="metrics">
-          <div class="metric">
-            <strong>95%</strong>
-            <span>reduction in dropout rates during onboarding</span>
-          </div>
-          <div class="metric">
-            <strong>200%</strong>
-            <span>increase in engagement</span>
+        <div class="label">solutions</div>
+        <div class="pills">
+          <span class="pill">UI flows</span>
+          <span class="pill">Messaging</span>
+          <span class="pill">Feature creation</span>
+          <span class="pill">Social marketing</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- hero gallery -->
+    <section class="gallery" aria-label="feature previews">
+      <img src="/assets/images/wishsale.png" alt="Wishlist sale screen" />
+      <img src="/assets/images/maia.png" alt="Outfit post example" />
+      <img src="/assets/images/productview.png" alt="Product view" />
+    </section>
+
+    <!-- project summary -->
+    <section class="band">
+      <div class="band-inner">
+        <div class="label">project summary</div>
+        <div class="content-italic">
+          Re-imagining the online shopping experience for Gen-Z:
+          <p>making shopping social + smarter</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- narrative -->
+    <section class="summary-copy">
+      <p>As Product Lead at Garde-Robe, I worked directly with the CEO/Founder to imagine the power user — <strong>stylish, tech-savvy, and highly influenced by their close social circle.</strong></p>
+      <p>From here, we designed solutions that help this user find inspiration, organize shopping to make meaningful purchases, ask friends for advice, see what friends are buying, and archive closet pieces & outfits.</p>
+      <p><strong>A shopping ecosystem.</strong></p>
+    </section>
+
+    <!-- results -->
+    <section class="band">
+      <div class="band-inner" style="align-items:flex-start;">
+        <div class="label" style="padding-top:8px;">results summary</div>
+        <div>
+          <div class="metrics">
+            <div class="metric">
+              <strong>95%</strong>
+              <span>reduction in sign-up drop-off after onboarding flow redesign</span>
+            </div>
+            <div class="metric">
+              <strong>200%</strong>
+              <span>increase in engagement after value-prop & feature updates</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="looks-image-row">
-    <img src="../assets/images/itemstagged.png" alt="Wishlist Sale">
-    <img src="../assets/images/looks.png" alt="Maia Outfit">
-    <img src="../assets/images/tagselect.png" alt="Product View">
-  </div>
-  
-  <section class="summary-copy section-wrap">
-    <p>In any product targeting Gen-Z, alignment with culture, trends, and visual language is extremely important, but so is authenticity. </p>
-    <p>(we see you, Instagram captions heavy with emoji 🙄 and em-dash —). </p>
-    <p>The goal was to create a brand identity that would be consistent across all text notifications, in-app pop ups, email communications, and social media marketing. Then to ensure this messaging was consistent with all visual communication.</p>
-    <p><bold>view the complete work sample below. </bold></p>
-  </section>
+    <!-- looks gallery -->
+    <section class="gallery" aria-label="looks & tagging">
+      <img src="/assets/images/itemstagged.png" alt="Items tagged" />
+      <img src="/assets/images/looks.png" alt="Looks feed" />
+      <img src="/assets/images/tagselect.png" alt="Tag selector" />
+    </section>
 
+    <!-- brand/messaging narrative -->
+    <section class="summary-copy">
+      <p>For Gen-Z, cultural alignment and visual language matter — but so does authenticity.</p>
+      <p>The goal: create a brand voice for notifications, in-app popups, email, and social — then ensure visuals reinforce that same message.</p>
+      <p><strong>view the complete work sample below.</strong></p>
+    </section>
+  </main>
 </body>
 </html>
