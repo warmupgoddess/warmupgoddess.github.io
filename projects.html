@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #YOUR_BG_COLOR;
+      font-family: 'Your Font', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      /* paste your Figma CSS for the name here */
+      font-size: 48px;
+      color: #YOUR_COLOR;
+    }
+
+    .images {
+      display: flex;
+      gap: 24px; /* adjust to match Figma spacing */
+      margin: 32px 0;
+    }
+
+    .images img {
+      width: 300px; /* match your Figma dimensions */
+      height: auto;
+    }
+
+    .status {
+      /* paste your Figma CSS for "in progress" text */
+      font-size: 16px;
+      color: #YOUR_COLOR;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Name</h1>
+  <div class="images">
+    <img src="image1.jpg" alt="" />
+    <img src="image2.jpg" alt="" />
+  </div>
+  <p class="status">in progress</p>
+</body>
+</html>
