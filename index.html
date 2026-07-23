@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>mrinalini keskar</title>
   <style>
     *, *::before, *::after {
@@ -39,12 +39,14 @@
       color: var(--title);
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
+      min-height: 100dvh;
+      position: relative;
     }
 
-    /* 8px inset framing stroke */
+    /* 8px framing stroke — spans the full document, scrolls with it */
     body::after {
       content: "";
-      position: fixed;
+      position: absolute;
       inset: 0;
       border: 8px solid var(--frame);
       pointer-events: none;
@@ -55,9 +57,10 @@
       max-width: 560px;
       margin: 0 auto;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      padding: 44px 32px 40px;
+      padding: 44px 32px calc(40px + env(safe-area-inset-bottom));
       text-align: left;
     }
 
@@ -161,7 +164,7 @@
 
     /* ---- Mobile tightening ---- */
     @media (max-width: 480px) {
-      .page { padding: 36px 22px 32px; }
+      .page { padding: 36px 22px calc(32px + env(safe-area-inset-bottom)); }
       .projects { margin-top: 56px; gap: 48px; }
     }
   </style>
