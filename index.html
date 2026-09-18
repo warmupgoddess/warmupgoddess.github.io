@@ -31,208 +31,273 @@
     }
 
     :root {
-      --card:  rgba(255, 234, 226, 0.5);
-      --text:  #000;
-      --live:  #f09;
-      --foot:  #fff;
+      /* Mobile metrics; the desktop block below scales them up by 10/9.
+         The longest description — "Your camera roll, geographically sliced" —
+         measures 18.875em in Helvetica Neue with the 0.04em tracking, so a
+         block needs 18.875 x --text of inner width to seat it on one line.
+         --text holds the design's 16.2px wherever that fits between the
+         gutters, and eases down on phones too narrow to carry it. */
+      --gutter:    23px;
+      --pad-x:     16px;
+      --text:      min(16.2px, calc((100vw - var(--gutter) * 2 - var(--pad-x) * 2) / 19.2));
+      --gap-s:     7.2px;
+      --pad-y:     30.6px;
+      --deck-gap:  21.6px;
+      --stack-w:   380px;
+      --head-gap:  46.5px;
+      --foot-size: 20px;
+
+      --block:       rgba(255, 255, 255, 0.5);
+      --block-hover: #fff;
+      --ink:         #000;
+      --live:        #a00060;
+      --foot:        #fff;
     }
 
     html, body { height: 100%; }
 
     body {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      /* Warm field: rose → blush → coral, with a flat grey wash over the top */
-      background-image:
-        linear-gradient(90deg, rgba(194, 194, 194, 0.5) 0%, rgba(194, 194, 194, 0.5) 100%),
-        linear-gradient(
-          180deg,
-          rgb(251, 89, 102)  0%,
-          rgb(244, 86, 99)   37.857%,
-          rgb(255, 164, 172) 46.983%,
-          rgb(255, 164, 172) 55.917%,
-          rgb(254, 199, 179) 58.419%,
-          rgb(255, 102, 58)  64.632%,
-          rgb(255, 102, 58)  99.987%
-        );
+      /* Rothko-esque field: rose → blush → coral */
+      background-image: linear-gradient(
+        180deg,
+        rgb(251, 89, 102)  0%,
+        rgb(244, 86, 99)   37.857%,
+        rgb(255, 164, 172) 46.983%,
+        rgb(255, 164, 172) 55.917%,
+        rgb(254, 199, 179) 58.419%,
+        rgb(255, 102, 58)  64.632%,
+        rgb(255, 102, 58)  99.987%
+      );
       background-attachment: fixed;
-      color: var(--text);
+      color: var(--ink);
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
       min-height: 100dvh;
     }
 
+    /* Blurred wash sitting over the gradient, under everything else */
+    .veil {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.1);
+      -webkit-backdrop-filter: blur(40px);
+      backdrop-filter: blur(40px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .page {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 65px 23px calc(48px + env(safe-area-inset-bottom));
+      padding: 48px var(--gutter) calc(24px + env(safe-area-inset-bottom));
     }
 
-    /* ---- Heart ---- */
+    /* ---- Masthead: name · heart · discipline ---- */
+    .masthead {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      font-size: 30px;
+      font-weight: 300;
+      line-height: normal;
+      letter-spacing: 0.07em;
+      color: #fff;
+      text-align: center;
+    }
+
+    .masthead span { white-space: nowrap; }
+
+    /* Sized off the masthead type: 53.5px against 30px on mobile */
     .heart {
       display: block;
-      width: 127.05px;
-      height: auto;
+      width: 1.7833em;
+      height: 1.7833em;
+      object-fit: contain;
       user-select: none;
     }
 
-    /* ---- Card ---- */
-    .card {
-      background: var(--card);
-      overflow: clip;
-      margin-top: 49px;
-      padding: 36px 12px;
+    /* ---- Deck blocks ---- */
+    .decks {
+      margin-top: var(--head-gap);
       width: 100%;
-      max-width: 347px;
-    }
-
-    .projects {
+      max-width: var(--stack-w);
       display: flex;
       flex-direction: column;
-      gap: 64px;
+      gap: var(--deck-gap);
+    }
+
+    .deck {
+      position: relative;
+      background: var(--block);
+      overflow: clip;
+      padding: var(--pad-y) var(--pad-x);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-s);
       text-align: center;
-      font-size: 18px;
+      font-size: var(--text);
       line-height: normal;
+      letter-spacing: 0.04em;
       word-break: break-word;
+      transition: background-color 0.15s ease;
     }
 
-    .project {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .deck-head { font-weight: 700; }
+
+    /* The title link stretches over the whole block */
+    .deck-link {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-position: from-font;
+    }
+    .deck-link::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+    .deck-link:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
     }
 
-    .project-head {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      align-items: flex-start;
-    }
+    .deck-head .light { font-weight: 300; }
 
-    .project-title {
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .project-title:hover { text-decoration: underline; }
-    .project-title .light { font-weight: 300; }
-
+    /* Sits above the stretched link so it stays separately clickable */
     .live {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      font-weight: 700;
+      position: relative;
+      z-index: 1;
+      margin-left: var(--gap-s);
       color: var(--live);
       text-decoration: none;
       white-space: nowrap;
     }
     .live:hover { text-decoration: underline; }
-    .live svg {
-      width: 12px;
-      height: 12px;
-      stroke: currentColor;
-      stroke-width: 2.2;
-      fill: none;
+
+    .deck-desc { font-weight: 400; }
+
+    /* Touch: every block reads the same, and lights up on press */
+    @media (hover: none) {
+      .deck:active { background: var(--block-hover); }
     }
 
-    .project-desc { font-weight: 400; }
+    /* Pointer: the whole block lights up on hover */
+    @media (hover: hover) {
+      .deck:hover { background: var(--block-hover); }
+    }
 
     /* ---- Footer ---- */
     .footer {
       margin-top: auto;
-      padding-top: 64px;
-      display: flex;
-      gap: 17px;
-      align-items: center;
+      padding-top: 48px;
+      width: 100%;
+      text-align: center;
     }
     .footer a {
-      font-size: 18px;
+      font-size: var(--foot-size);
       font-weight: 700;
       line-height: normal;
+      letter-spacing: 0.07em;
       color: var(--foot);
-      opacity: 0.75;
+      opacity: 0.5;
       text-decoration: none;
       white-space: nowrap;
     }
-    .footer a:hover { text-decoration: underline; }
-
-    /* Name is carried by the design's heart mark, but keep it in the document */
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
+    .footer a:hover { opacity: 0.75; }
 
     /* ---- Narrow phones: trim the gutter so long lines still fit ---- */
     @media (max-width: 392px) {
-      .page { padding-left: 16px; padding-right: 16px; }
+      :root { --gutter: 16px; }
     }
 
     /* ---- Desktop ---- */
     @media (min-width: 640px) {
-      .page { padding: 19px 23px calc(48px + env(safe-area-inset-bottom)); }
-      .heart { width: 181.5px; }
-      .card {
-        margin-top: 35.5px;
-        padding: 36px 32px;
-        max-width: 387px;
+      :root {
+        --gutter:    33px;
+        --text:      18px;
+        --gap-s:     8px;
+        --pad-y:     34px;
+        --pad-x:     28px;
+        --deck-gap:  24px;
+        /* 420 - 2x28 = 364px of inner width, against the 340px the longest
+           description needs at 18px — one line with room to spare */
+        --stack-w:   420px;
+        --head-gap:  38px;
+        --foot-size: 40px;
       }
+
+      .page { padding: 56px var(--gutter) calc(24px + env(safe-area-inset-bottom)); }
+
+      /* Name, heart and discipline on one line. The row measures 16.98em wide,
+         so 60px holds from the 1280 design width down to ~1116px, below which
+         the type — and the heart with it — eases down rather than wrapping. */
+      .masthead {
+        flex-direction: row;
+        gap: 0.5em;
+        font-size: min(60px, calc((100vw - var(--gutter) * 2) / 17.5));
+      }
+
+      /* 39.322px against 60px type */
+      .heart {
+        width: 0.6554em;
+        height: 0.6554em;
+      }
+
+      .footer { text-align: left; }
     }
   </style>
 </head>
 <body>
+  <div class="veil"></div>
+
   <main class="page">
 
-    <h1 class="visually-hidden">mrinalini keskar — product &amp; brand</h1>
+    <h1 class="masthead">
+      <span>mrinalini keskar</span>
+      <img class="heart" src="heart.png" alt="" />
+      <span>product/brand</span>
+    </h1>
 
-    <img class="heart" src="heart.png" alt="candy heart reading MRIN" />
+    <section class="decks">
 
-    <section class="card">
-      <div class="projects">
+      <article class="deck">
+        <p class="deck-head">
+          <a class="deck-link" href="decks/cfainparis-casestudy.pdf" target="_blank" rel="noopener">chicfilles</a><a class="live" href="https://chickfilayeinparis.com" target="_blank" rel="noopener">Live</a>
+        </p>
+        <p class="deck-desc">Your camera roll, geographically sliced</p>
+      </article>
 
-        <article class="project">
-          <div class="project-head">
-            <a class="project-title" href="decks/cfainparis-casestudy.pdf" target="_blank" rel="noopener">chicfilles </a>
-            <a class="live" href="https://chickfilayeinparis.com" target="_blank" rel="noopener">
-              Live
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-            </a>
-          </div>
-          <p class="project-desc">Your camera roll, geographically sliced</p>
-        </article>
+      <article class="deck">
+        <p class="deck-head">
+          <a class="deck-link" href="decks/jordan.pdf" target="_blank" rel="noopener">Jordan Brand</a> <span class="light">Case Study</span>
+        </p>
+        <p class="deck-desc">Cultural relevance through cities</p>
+      </article>
 
-        <article class="project">
-          <div class="project-head">
-            <a class="project-title" href="decks/jordan.pdf" target="_blank" rel="noopener">Jordan Brand <span class="light">Case Study</span></a>
-          </div>
-          <p class="project-desc">Cultural relevance through cities</p>
-        </article>
+      <article class="deck">
+        <p class="deck-head">
+          <a class="deck-link" href="decks/emotional-roi.pdf" target="_blank" rel="noopener">emotional ROI</a> <span class="light">Case Study</span>
+        </p>
+        <p class="deck-desc">What users really want while shopping</p>
+      </article>
 
-        <article class="project">
-          <div class="project-head">
-            <a class="project-title" href="decks/emotional-roi.pdf" target="_blank" rel="noopener">emotional ROI <span class="light">Case Study</span></a>
-          </div>
-          <p class="project-desc">What users really want while shopping</p>
-        </article>
+      <article class="deck">
+        <p class="deck-head">
+          <a class="deck-link" href="decks/garde-robe.pdf" target="_blank" rel="noopener">Product Lead, Garde-Robe</a>
+        </p>
+        <p class="deck-desc">Digital Closet, selected works</p>
+      </article>
 
-        <article class="project">
-          <div class="project-head">
-            <a class="project-title" href="decks/garde-robe.pdf" target="_blank" rel="noopener">Product Lead, Garde-Robe</a>
-          </div>
-          <p class="project-desc">Digital Closet, selected works</p>
-        </article>
-
-      </div>
     </section>
 
     <footer class="footer">
       <a href="https://www.linkedin.com/in/mrinalinikeskar/" target="_blank" rel="noopener">linkedin</a>
-      <a href="https://www.instagram.com/mrinalinikeskar/" target="_blank" rel="noopener">instagram</a>
     </footer>
 
   </main>
