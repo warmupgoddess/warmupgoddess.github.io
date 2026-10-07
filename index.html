@@ -6,6 +6,7 @@
   <title>mrinalini keskar</title>
 
   <meta name="description" content="Mrinalini Keskar — product &amp; brand. Selected work and case studies." />
+  <meta name="theme-color" content="#191716" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -23,6 +24,11 @@
   <meta name="twitter:title" content="mrinalini keskar" />
   <meta name="twitter:description" content="product &amp; brand — selected work and case studies." />
   <meta name="twitter:image" content="https://www.mrinalinikeskar.com/opengraph-image.png" />
+
+  <!-- Pinyon Script for the name; Bodoni Moda stands in for Didot where it isn't installed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400&family=Pinyon+Script&display=swap" />
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -31,275 +37,415 @@
     }
 
     :root {
-      /* Mobile metrics; the desktop block below scales them up by 10/9.
-         The longest description — "Your camera roll, geographically sliced" —
-         measures 18.875em in Helvetica Neue with the 0.04em tracking, so a
-         block needs 18.875 x --text of inner width to seat it on one line.
-         --text holds the design's 16.2px wherever that fits between the
-         gutters, and eases down on phones too narrow to carry it. */
-      --gutter:    23px;
-      --pad-x:     16px;
-      --text:      min(16.2px, calc((100vw - var(--gutter) * 2 - var(--pad-x) * 2) / 19.2));
-      --gap-s:     7.2px;
-      --pad-y:     30.6px;
-      --deck-gap:  21.6px;
-      --stack-w:   380px;
-      --head-gap:  46.5px;
-      --foot-size: 20px;
+      --bg:     #191716;
+      --ink:    #fff;
+      --name:   #e2b2d2;
+      --live:   #ed94ff;
+      --rule:   rgba(255, 255, 255, 0.1);
+      --dim:    0.3;
+      --hair:   1px;    /* the design's 0.5px rule, on screens that can draw it */
 
-      --block:       rgba(255, 255, 255, 0.5);
-      --block-hover: #fff;
-      --ink:         #000;
-      --live:        #a00060;
-      --foot:        #fff;
+      --script: 'Pinyon Script', cursive;
+      --didot:  'Didot', 'Bodoni Moda', 'Bodoni 72', serif;
+      --times:  'Times New Roman', Times, serif;
+
+      /* Mobile metrics; the desktop block below swaps in the 1728 design's */
+      --bar-l:     16px;   /* where the header rule starts */
+      --bar-r:     16px;   /* where it stops, from the right */
+      --role-x:    44px;   /* role title, from the rule's start */
+      --heart-x:   0px;    /* heart, from the rule's start */
+      --col:       16px;   /* left edge of the works column */
+      --tag-gap:   0px;
+      --title:     34px;
+      --desc:      17px;
+      --tag:       14px;
+      --role:      18px;
+      --link:      15px;
+      --works-gap: 36px;
     }
 
-    html, body { height: 100%; }
+    @media (min-resolution: 2dppx) {
+      :root { --hair: 0.5px; }
+    }
+
+    /* CSS snapping is the no-JS fallback; the script below pages the screens instead */
+    html {
+      background: var(--bg);
+      scroll-snap-type: y mandatory;
+    }
+    html.paged { scroll-snap-type: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
 
     body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      /* Rothko-esque field: rose → blush → coral */
-      background-image: linear-gradient(
-        180deg,
-        rgb(251, 89, 102)  0%,
-        rgb(244, 86, 99)   37.857%,
-        rgb(255, 164, 172) 46.983%,
-        rgb(255, 164, 172) 55.917%,
-        rgb(254, 199, 179) 58.419%,
-        rgb(255, 102, 58)  64.632%,
-        rgb(255, 102, 58)  99.987%
-      );
-      background-attachment: fixed;
+      background: var(--bg);
       color: var(--ink);
+      font-family: var(--times);
       -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      min-height: 100dvh;
     }
 
-    /* Blurred wash sitting over the gradient, under everything else */
-    .veil {
-      position: fixed;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.1);
-      -webkit-backdrop-filter: blur(40px);
-      backdrop-filter: blur(40px);
-      pointer-events: none;
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
+
+    /* Each screen fills the viewport; a scroll moves one whole screen */
+    .screen {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      scroll-snap-align: start;
+    }
+
+    /* ---- Landing ---- */
+    /* The landing holds still while the works screen slides up over it */
+    .landing {
+      position: sticky;
+      top: 0;
       z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
     }
 
-    .page {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 48px var(--gutter) calc(24px + env(safe-area-inset-bottom));
-    }
-
-    /* ---- Masthead: name · heart · discipline ---- */
-    .masthead {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      font-size: 30px;
-      font-weight: 300;
-      line-height: normal;
-      letter-spacing: 0.07em;
-      color: #fff;
+    .name {
+      font-family: var(--script);
+      font-weight: 400;
+      font-size: min(22vw, 160px);
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      color: var(--name);
       text-align: center;
+      white-space: nowrap;
     }
+    /* Mrinalini over Keskar on mobile; MrinaliniKeskar on one line on desktop */
+    .name span { display: block; }
 
-    .masthead span { white-space: nowrap; }
-
-    /* Sized off the masthead type: 53.5px against 30px on mobile */
-    .heart {
+    .next {
+      position: absolute;
+      left: 50%;
+      bottom: calc(11.4vh + env(safe-area-inset-bottom));
+      transform: translateX(-50%);
       display: block;
-      width: 1.7833em;
-      height: 1.7833em;
-      object-fit: contain;
-      user-select: none;
+      line-height: 0;
     }
 
-    /* ---- Deck blocks ---- */
-    .decks {
-      margin-top: var(--head-gap);
-      width: 100%;
-      max-width: var(--stack-w);
-      display: flex;
-      flex-direction: column;
-      gap: var(--deck-gap);
+    /* ---- Select works ---- */
+    /* Its own compositing layer, so the browser redraws the overlap as it moves */
+    .works-screen {
+      z-index: 1;
+      transform: translateZ(0);
+      background: var(--bg);
+      padding: 40px 0 calc(48px + env(safe-area-inset-bottom));
     }
 
-    .deck {
+    .bar {
       position: relative;
-      background: var(--block);
-      overflow: clip;
-      padding: var(--pad-y) var(--pad-x);
+      display: flex;
+      align-items: baseline;
+      margin: 0 var(--bar-r) 0 var(--bar-l);
+      padding: 0 0 11px var(--role-x);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    /* Heart on the rule doubles as the way back to the landing */
+    .bar .heart {
+      position: absolute;
+      left: var(--heart-x);
+      bottom: 0;
+      transform: translateY(50%);
+      display: block;
+      line-height: 0;
+      transition: opacity 0.15s ease;
+    }
+    .bar .heart:hover { opacity: 0.7; }
+
+    .role {
+      font-family: var(--didot);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--role);
+      letter-spacing: 0.01em;
+    }
+
+    .bar-link {
+      margin-left: auto;
+      font-size: var(--link);
+      letter-spacing: 0.01em;
+    }
+    .bar-link:hover { text-decoration: underline; }
+
+    .works-head {
+      margin: 64px 0 28px var(--col);
+      font-size: var(--desc);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    .works {
+      list-style: none;
       display: flex;
       flex-direction: column;
-      gap: var(--gap-s);
-      text-align: center;
-      font-size: var(--text);
-      line-height: normal;
-      letter-spacing: 0.04em;
-      word-break: break-word;
-      transition: background-color 0.15s ease;
+      gap: var(--works-gap);
     }
 
-    .deck-head { font-weight: 700; }
-
-    /* The title link stretches over the whole block */
-    .deck-link {
-      color: var(--ink);
-      text-decoration: underline;
-      text-underline-position: from-font;
+    .work {
+      position: relative;
+      display: grid;
+      grid-template-columns: var(--col) minmax(0, 1fr);
+      padding-right: 16px;
+      grid-template-areas:
+        ".   tag"
+        ".   title"
+        ".   desc";
+      transition: opacity 0.2s ease;
     }
-    .deck-link::after {
+
+    .work-tag,
+    .work-title {
+      background: linear-gradient(var(--rule), var(--rule)) left bottom / 100% var(--hair) no-repeat;
+      transition: background-size 0.2s ease;
+    }
+
+    .work-tag {
+      grid-area: tag;
+      font-size: var(--tag);
+      letter-spacing: 0.01em;
+      background: none;
+    }
+
+    .work-title {
+      grid-area: title;
+      justify-self: start;
+      font-family: var(--didot);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--title);
+      line-height: 1.15;
+      letter-spacing: 0.19em;
+    }
+
+    /* The title link stretches over the whole entry */
+    .work-title::after {
       content: "";
       position: absolute;
       inset: 0;
     }
-    .deck-link:focus-visible {
-      outline: 2px solid var(--ink);
-      outline-offset: 3px;
-    }
 
-    .deck-head .light { font-weight: 300; }
+    .work-desc {
+      grid-area: desc;
+      font-size: var(--desc);
+      letter-spacing: 0.01em;
+    }
 
     /* Sits above the stretched link so it stays separately clickable */
-    .live {
+    a.work-tag {
       position: relative;
       z-index: 1;
-      margin-left: var(--gap-s);
-      color: var(--live);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .live:hover { text-decoration: underline; }
-
-    .deck-desc { font-weight: 400; }
-
-    /* Touch: every block reads the same, and lights up on press */
-    @media (hover: none) {
-      .deck:active { background: var(--block-hover); }
-    }
-
-    /* Pointer: the whole block lights up on hover */
-    @media (hover: hover) {
-      .deck:hover { background: var(--block-hover); }
-    }
-
-    /* ---- Footer ---- */
-    .footer {
-      margin-top: auto;
-      padding-top: 48px;
-      width: 100%;
-      text-align: center;
-    }
-    .footer a {
-      font-size: var(--foot-size);
+      justify-self: start;
       font-weight: 700;
-      line-height: normal;
-      letter-spacing: 0.07em;
-      color: var(--foot);
-      opacity: 0.5;
-      text-decoration: none;
-      white-space: nowrap;
+      color: var(--live);
     }
-    .footer a:hover { opacity: 0.75; }
+    a.work-tag:hover { text-decoration: underline; }
 
-    /* ---- Narrow phones: trim the gutter so long lines still fit ---- */
-    @media (max-width: 392px) {
-      :root { --gutter: 16px; }
+    /* Hover / focus: the entry's rule comes up, the rest of the list recedes */
+    .work:hover .work-title,
+    .work:hover .work-tag,
+    .work:focus-within .work-title,
+    .work:focus-within .work-tag {
+      --rule: var(--ink);
+      background-size: 100% 1px;
     }
+    .works:has(.work:hover) .work:not(:hover),
+    .works:has(.work:focus-within) .work:not(:focus-within) {
+      opacity: var(--dim);
+    }
+    .work .work-title:focus-visible { outline: none; }
 
-    /* ---- Desktop ---- */
-    @media (min-width: 640px) {
+    /* ---- Desktop: the 1728 frame's geometry, in proportion ---- */
+    @media (min-width: 900px) {
       :root {
-        --gutter:    33px;
-        --text:      18px;
-        --gap-s:     8px;
-        --pad-y:     34px;
-        --pad-x:     28px;
-        --deck-gap:  24px;
-        /* 420 - 2x28 = 364px of inner width, against the 340px the longest
-           description needs at 18px — one line with room to spare */
-        --stack-w:   420px;
-        --head-gap:  38px;
-        --foot-size: 40px;
+        --bar-l:     6.08vw;                 /* 105 / 1728 */
+        --bar-r:     12.67vw;                /* 219 / 1728 */
+        --role-x:    11.05vw;                /* 296 - 105 */
+        --heart-x:   2.3vw;                  /* 145 - 105 */
+        --col:       17.94vw;                /* 310 */
+        --tag-gap:   2.03vw;                 /* 35: tag's right edge to the title */
+        --title:     clamp(40px, 3.125vw, 54px);
+        --desc:      clamp(20px, 1.5625vw, 27px);
+        --tag:       clamp(16px, 1.157vw, 20px);
+        --role:      clamp(20px, 1.5625vw, 27px);
+        --link:      clamp(16px, 1.157vw, 20px);
+        --works-gap: clamp(28px, 5.4vh, 54px);
       }
 
-      .page { padding: 56px var(--gutter) calc(24px + env(safe-area-inset-bottom)); }
+      .name { font-size: min(216px, 12.2vw); }
+      .name span { display: inline; }
 
-      /* Name, heart and discipline on one line. The row measures 16.98em wide,
-         so 60px holds from the 1280 design width down to ~1116px, below which
-         the type — and the heart with it — eases down rather than wrapping. */
-      .masthead {
-        flex-direction: row;
-        gap: 0.5em;
-        font-size: min(60px, calc((100vw - var(--gutter) * 2) / 17.5));
+      .works-screen { padding-top: clamp(40px, 9.4vh, 94px); }
+
+      .works-head { margin: clamp(48px, 8.3vh, 83px) 0 clamp(20px, 3.4vh, 34px) var(--col); }
+
+      /* Tag hangs in the gutter, right-aligned to the title; one rule runs under both */
+      .work {
+        grid-template-columns: var(--col) max-content;
+        padding-right: 0;
+        grid-template-areas:
+          "tag title"
+          ".   desc";
+        align-items: end;
       }
-
-      /* 39.322px against 60px type */
-      .heart {
-        width: 0.6554em;
-        height: 0.6554em;
+      .work-tag,
+      a.work-tag {
+        justify-self: end;
+        padding: 0 var(--tag-gap) 0.35em 0;
+        background: linear-gradient(var(--rule), var(--rule)) left bottom / 100% var(--hair) no-repeat;
       }
-
-      .footer { text-align: left; }
     }
   </style>
 </head>
 <body>
-  <div class="veil"></div>
 
-  <main class="page">
+  <section class="screen landing" id="top" aria-label="Mrinalini Keskar">
+    <h1 class="name"><span>Mrinalini</span><span>Keskar</span></h1>
+    <a class="next" href="#work" aria-label="Select works">
+      <img src="assets/arrow-down.svg" width="84" height="84" alt="" />
+    </a>
+  </section>
 
-    <h1 class="masthead">
-      <span>mrinalini keskar</span>
-      <img class="heart" src="heart.png" alt="" />
-      <span>product/brand</span>
-    </h1>
+  <main class="screen works-screen" id="work">
 
-    <section class="decks">
+    <header class="bar">
+      <a class="heart" href="#top" aria-label="Back to top"><img src="assets/heart.svg" width="21" height="20" alt="" /></a>
+      <p class="role">Product/Brand Developer</p>
+      <a class="bar-link" href="https://www.linkedin.com/in/mrinalinikeskar/" target="_blank" rel="noopener">linkedin</a>
+    </header>
 
-      <article class="deck">
-        <p class="deck-head">
-          <a class="deck-link" href="decks/cfainparis-casestudy.pdf" target="_blank" rel="noopener">chicfilles</a><a class="live" href="https://chickfilayeinparis.com" target="_blank" rel="noopener">Live</a>
-        </p>
-        <p class="deck-desc">Your camera roll, geographically sliced</p>
-      </article>
+    <h2 class="works-head">select works</h2>
 
-      <article class="deck">
-        <p class="deck-head">
-          <a class="deck-link" href="decks/jordan.pdf" target="_blank" rel="noopener">Jordan Brand</a> <span class="light">Case Study</span>
-        </p>
-        <p class="deck-desc">Cultural relevance through cities</p>
-      </article>
+    <ul class="works">
 
-      <article class="deck">
-        <p class="deck-head">
-          <a class="deck-link" href="decks/emotional-roi.pdf" target="_blank" rel="noopener">emotional ROI</a> <span class="light">Case Study</span>
-        </p>
-        <p class="deck-desc">What users really want while shopping</p>
-      </article>
+      <li class="work">
+        <a class="work-tag" href="https://chickfilayeinparis.com" target="_blank" rel="noopener">Live</a>
+        <a class="work-title" href="decks/cfainparis-casestudy.pdf" target="_blank" rel="noopener">chicfilles</a>
+        <p class="work-desc">Your camera roll, geographically sliced.</p>
+      </li>
 
-      <article class="deck">
-        <p class="deck-head">
-          <a class="deck-link" href="decks/garde-robe.pdf" target="_blank" rel="noopener">Product Lead, Garde-Robe</a>
-        </p>
-        <p class="deck-desc">Digital Closet, selected works</p>
-      </article>
+      <li class="work">
+        <span class="work-tag">Case Study</span>
+        <a class="work-title" href="decks/jordan.pdf" target="_blank" rel="noopener">Jumpman</a>
+        <p class="work-desc">Expanding cultural relevance through cities.</p>
+      </li>
 
-    </section>
+      <li class="work">
+        <span class="work-tag">Case Study</span>
+        <a class="work-title" href="decks/emotional-roi.pdf" target="_blank" rel="noopener">Emotional ROI</a>
+        <p class="work-desc">Identifying consumer desire.</p>
+      </li>
 
-    <footer class="footer">
-      <a href="https://www.linkedin.com/in/mrinalinikeskar/" target="_blank" rel="noopener">linkedin</a>
-    </footer>
+      <li class="work">
+        <span class="work-tag">Product Lead</span>
+        <a class="work-title" href="decks/garde-robe.pdf" target="_blank" rel="noopener">Garde-Robe</a>
+        <p class="work-desc">Digitizing your closet.</p>
+      </li>
+
+    </ul>
 
   </main>
+
+  <script>
+    /* One gesture, one screen: a scroll, swipe or key press on the landing
+       carries the page to the works screen, and the reverse at its top. Once a
+       move starts, input is held until the scroll lands and the trackpad's
+       momentum has died away, so a single flick never overshoots. */
+    (function () {
+      var root = document.documentElement;
+      var works = document.getElementById('work');
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+      var busy = false, lastInput = 0, touchY = null;
+
+      root.classList.add('paged');
+
+      // Hide the landing once it's fully covered, so no stale paint of it can
+      // linger over the works screen after a programmatic scroll
+      var landing = document.querySelector('.landing');
+      function cover() {
+        landing.style.visibility = window.scrollY >= works.offsetTop - 1 ? 'hidden' : '';
+      }
+      window.addEventListener('scroll', cover, { passive: true });
+      window.addEventListener('resize', cover);
+      cover();
+
+      function release() {
+        // Wait out trailing momentum events before taking input again
+        if (Date.now() - lastInput < 160) return setTimeout(release, 80);
+        busy = false;
+      }
+
+      function go(y) {
+        busy = true;
+        window.scrollTo({ top: y, behavior: reduce.matches ? 'auto' : 'smooth' });
+        var done = false;
+        function finish() {
+          if (done) return;
+          done = true;
+          window.removeEventListener('scrollend', finish);
+          release();
+        }
+        window.addEventListener('scrollend', finish);
+        setTimeout(finish, 1000); // browsers without scrollend
+      }
+
+      // +1 moves down a screen, -1 up; returns whether the move was taken
+      function step(dir) {
+        var top = works.offsetTop, y = window.scrollY;
+        if (dir > 0 && y < top - 1) { go(top); return true; }
+        if (dir < 0 && y > 0 && y <= top + 1) { go(0); return true; }
+        return false;
+      }
+
+      window.addEventListener('wheel', function (e) {
+        lastInput = Date.now();
+        if (busy) { e.preventDefault(); return; }
+        if (Math.abs(e.deltaY) < 2) return;
+        if (step(e.deltaY > 0 ? 1 : -1)) e.preventDefault();
+      }, { passive: false });
+
+      window.addEventListener('touchstart', function (e) {
+        touchY = e.touches[0].clientY;
+      }, { passive: true });
+
+      window.addEventListener('touchmove', function (e) {
+        lastInput = Date.now();
+        if (busy) { e.preventDefault(); return; }
+        if (touchY === null) return;
+        var dy = touchY - e.touches[0].clientY;
+        if (Math.abs(dy) < 12) return;
+        touchY = null;
+        if (step(dy > 0 ? 1 : -1)) e.preventDefault();
+      }, { passive: false });
+
+      window.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey) return;
+        var down = { ArrowDown: 1, PageDown: 1, ' ': 1 }[e.key];
+        var up = { ArrowUp: 1, PageUp: 1 }[e.key];
+        if (e.key === ' ' && e.shiftKey) { down = 0; up = 1; }
+        if (!down && !up) return;
+        if (busy || step(down ? 1 : -1)) e.preventDefault();
+      });
+
+      // The arrow takes the same path, so it can't be double-fired mid-move
+      document.querySelector('.next').addEventListener('click', function (e) {
+        e.preventDefault();
+        this.blur();
+        if (!busy) step(1);
+      });
+
+      document.querySelector('.bar .heart').addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!busy) go(0);
+      });
+    })();
+  </script>
 </body>
 </html>
